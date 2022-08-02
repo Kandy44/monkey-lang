@@ -28,6 +28,7 @@ const (
 	EQ       = "=="
 	NOT_EQ   = "!="
 	COLON    = ":"
+	EXP      = "**"
 
 	// Delimiters
 	COMMA     = ","
