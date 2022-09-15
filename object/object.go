@@ -12,6 +12,10 @@ import (
 const (
 	// IntegerObj is an string representation for integer type
 	IntegerObj = "INTEGER"
+
+	// FLoatObj is an string representation for float type
+	FloatObj = "FLOAT"
+
 	// BooleanObj is an string representation for boolean type
 	BooleanObj = "BOOLEAN"
 	// StringObj is an string representation for string type
@@ -57,6 +61,10 @@ type Null struct {
 
 type Integer struct {
 	Value int64
+}
+
+type Float struct {
+	Value float64
 }
 
 type Boolean struct {
@@ -107,6 +115,12 @@ func (i *Integer) Inspect() string  { return fmt.Sprintf("%d", i.Value) }
 func (i *Integer) Type() ObjectType { return IntegerObj }
 func (i *Integer) HashKey() HashKey {
 	return HashKey{Type: i.Type(), Value: uint64(i.Value)}
+}
+
+func (f *Float) Inspect() string  { return fmt.Sprintf("%.6f", f.Value) }
+func (f *Float) Type() ObjectType { return FloatObj }
+func (f *Float) HashKey() HashKey {
+	return HashKey{Type: f.Type(), Value: uint64(f.Value)}
 }
 
 func (b *Boolean) Inspect() string  { return fmt.Sprintf("%t", b.Value) }

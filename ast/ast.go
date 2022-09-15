@@ -52,6 +52,11 @@ type IntegerLiteral struct {
 	Value int64
 }
 
+type FloatLiteral struct {
+	Token token.Token
+	Value float64
+}
+
 type PrefixExpression struct {
 	Token    token.Token // The prefix token, e.g. !
 	Operator string
@@ -173,6 +178,10 @@ func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
 func (il *IntegerLiteral) expressionNode()      {}
 func (il *IntegerLiteral) TokenLiteral() string { return il.Token.Literal }
 func (il *IntegerLiteral) String() string       { return il.Token.Literal }
+
+func (fl *FloatLiteral) expressionNode()      {}
+func (fl *FloatLiteral) TokenLiteral() string { return fl.Token.Literal }
+func (fl *FloatLiteral) String() string       { return fl.Token.Literal }
 
 func (pe *PrefixExpression) expressionNode()      {}
 func (pe *PrefixExpression) TokenLiteral() string { return pe.Token.Literal }

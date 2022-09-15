@@ -9,6 +9,7 @@ import (
 func TestNextToken(t *testing.T) {
 	input := `let five = 5;
 	let ten = 10;
+	let pi = 3.14;
 	
 	let add = fn(x, y) {
 		x + y;
@@ -30,6 +31,7 @@ func TestNextToken(t *testing.T) {
 	"foo bar"
 	[1, 2];
 	{"foo": "bar"}
+	42.34 != 35.26
 	`
 
 	tests := []struct {
@@ -46,6 +48,13 @@ func TestNextToken(t *testing.T) {
 		{token.ASSIGN, "="},
 		{token.INT, "10"},
 		{token.SEMICOLON, ";"},
+
+		{token.LET, "let"},
+		{token.IDENT, "pi"},
+		{token.ASSIGN, "="},
+		{token.FLOAT, "3.14"},
+		{token.SEMICOLON, ";"},
+
 		{token.LET, "let"},
 		{token.IDENT, "add"},
 		{token.ASSIGN, "="},
@@ -132,6 +141,10 @@ func TestNextToken(t *testing.T) {
 		{token.COLON, ":"},
 		{token.STRING, "bar"},
 		{token.RBRACE, "}"},
+
+		{token.FLOAT, "42.34"},
+		{token.NOT_EQ, "!="},
+		{token.FLOAT, "35.26"},
 
 		{token.EOF, ""},
 	}

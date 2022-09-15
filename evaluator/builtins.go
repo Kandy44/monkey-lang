@@ -2,7 +2,6 @@ package evaluator
 
 import (
 	"fmt"
-
 	"monkey_lang/object"
 )
 
